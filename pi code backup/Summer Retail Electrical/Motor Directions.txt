@@ -1,0 +1,95 @@
+
+printf("enter command to start (command speed): ");
+	while(choice!= -2){
+
+		scanf("%d %d", &choice, &speed);
+		/*
+		if(choice == STOP){
+			for(int i=0;i<=3;i++){
+				temp = changePWM(motor[i].PI_VALUE, OFF, motor[i].getpwmPIN());
+				if (temp != OK) printf("Motor %d failed to stop\n", motor[i].getmotor());
+				else printf("Motor %d stopped\n", motor[i].getmotor());
+			}
+			
+		}
+		*/
+		//To start, stop all motors from running
+		for(int i=0;i<=3;i++){
+				temp = changePWM(motor[i].PI_VALUE, OFF, motor[i].getpwmPIN());
+				if (temp != OK) printf("Motor %d failed to stop\n", motor[i].getmotor());
+				else printf("Motor %d stopped\n", motor[i].getmotor());
+		}
+	
+		if (choice == FWD){
+				//temp = changePWM(motor[FRONT_MOTOR].PI_VALUE, OFF, motor[FRONT_MOTOR].getpwmPIN());
+				//temp = changePWM(motor[REAR_MOTOR].PI_VALUE, OFF, motor[REAR_MOTOR].getpwmPIN());
+				
+				temp = gpio_write(motor[LEFT_MOTOR].PI_VALUE, motor[LEFT_MOTOR].getdirPIN(), REV);
+				temp = gpio_write(motor[RIGHT_MOTOR].PI_VALUE, motor[RIGHT_MOTOR].getdirPIN(), FWD);
+				
+				temp = changePWM(motor[LEFT_MOTOR].PI_VALUE, speed, motor[LEFT_MOTOR].getpwmPIN());
+				temp = changePWM(motor[RIGHT_MOTOR].PI_VALUE, speed, motor[RIGHT_MOTOR].getpwmPIN());
+				printf("Driving FWD, Speed %d \n", speed);
+		}
+		
+		else if(choice == REV){
+				//temp = changePWM(motor[FRONT_MOTOR].PI_VALUE, OFF, motor[FRONT_MOTOR].getpwmPIN());
+				//temp = changePWM(motor[REAR_MOTOR].PI_VALUE, OFF, motor[REAR_MOTOR].getpwmPIN());
+				
+				temp = gpio_write(motor[LEFT_MOTOR].PI_VALUE, motor[LEFT_MOTOR].getdirPIN(), FWD);
+				temp = gpio_write(motor[RIGHT_MOTOR].PI_VALUE, motor[RIGHT_MOTOR].getdirPIN(), REV);
+				
+				temp = changePWM(motor[LEFT_MOTOR].PI_VALUE, speed, motor[LEFT_MOTOR].getpwmPIN());
+				temp = changePWM(motor[RIGHT_MOTOR].PI_VALUE, speed, motor[RIGHT_MOTOR].getpwmPIN());
+				printf("Driving REV, Speed %d \n", speed);
+		}
+		//Front and Rear motors mounted opposite, so direction reversed to drive same way
+		else if(choice == LEFT){
+				//temp = changePWM(motor[LEFT_MOTOR].PI_VALUE, OFF, motor[LEFT_MOTOR].getpwmPIN());
+				//temp = changePWM(motor[RIGHT_MOTOR].PI_VALUE, OFF, motor[RIGHT_MOTOR].getpwmPIN());
+				
+				temp = gpio_write(motor[FRONT_MOTOR].PI_VALUE, motor[FRONT_MOTOR].getdirPIN(), FWD);
+				temp = gpio_write(motor[REAR_MOTOR].PI_VALUE, motor[REAR_MOTOR].getdirPIN(), REV);
+				
+				temp = changePWM(motor[FRONT_MOTOR].PI_VALUE, speed, motor[FRONT_MOTOR].getpwmPIN());
+				temp = changePWM(motor[REAR_MOTOR].PI_VALUE, speed, motor[REAR_MOTOR].getpwmPIN());
+				printf("Driving LEFT, Speed %d \n", speed);
+		}
+		else if(choice == RIGHT){
+				//temp = changePWM(motor[LEFT_MOTOR].PI_VALUE, OFF, motor[LEFT_MOTOR].getpwmPIN());
+				//temp = changePWM(motor[RIGHT_MOTOR].PI_VALUE, OFF, motor[RIGHT_MOTOR].getpwmPIN());
+				
+				temp = gpio_write(motor[FRONT_MOTOR].PI_VALUE, motor[FRONT_MOTOR].getdirPIN(), REV);
+				temp = gpio_write(motor[REAR_MOTOR].PI_VALUE, motor[REAR_MOTOR].getdirPIN(), FWD);
+				
+				temp = changePWM(motor[FRONT_MOTOR].PI_VALUE, speed, motor[FRONT_MOTOR].getpwmPIN());
+				temp = changePWM(motor[REAR_MOTOR].PI_VALUE, speed, motor[REAR_MOTOR].getpwmPIN());
+				printf("Driving RIGHT, Speed %d \n", speed);
+		}
+		
+		else if (choice == ROTATE_CCW){
+			temp = gpio_write(motor[FRONT_MOTOR].PI_VALUE, motor[FRONT_MOTOR].getdirPIN(), FWD);
+			temp = gpio_write(motor[REAR_MOTOR].PI_VALUE, motor[REAR_MOTOR].getdirPIN(), FWD);
+			temp = gpio_write(motor[LEFT_MOTOR].PI_VALUE, motor[LEFT_MOTOR].getdirPIN(), FWD);
+			temp = gpio_write(motor[RIGHT_MOTOR].PI_VALUE, motor[RIGHT_MOTOR].getdirPIN(), FWD);
+			
+			temp = changePWM(motor[FRONT_MOTOR].PI_VALUE, speed, motor[FRONT_MOTOR].getpwmPIN());
+			temp = changePWM(motor[REAR_MOTOR].PI_VALUE, speed, motor[REAR_MOTOR].getpwmPIN());			
+			temp = changePWM(motor[LEFT_MOTOR].PI_VALUE, speed, motor[LEFT_MOTOR].getpwmPIN());
+			temp = changePWM(motor[RIGHT_MOTOR].PI_VALUE, speed, motor[RIGHT_MOTOR].getpwmPIN());	
+		}
+		
+		else if (choice == ROTATE_CW){
+			temp = gpio_write(motor[FRONT_MOTOR].PI_VALUE, motor[FRONT_MOTOR].getdirPIN(), REV);
+			temp = gpio_write(motor[REAR_MOTOR].PI_VALUE, motor[REAR_MOTOR].getdirPIN(), REV);
+			temp = gpio_write(motor[LEFT_MOTOR].PI_VALUE, motor[LEFT_MOTOR].getdirPIN(), REV);
+			temp = gpio_write(motor[RIGHT_MOTOR].PI_VALUE, motor[RIGHT_MOTOR].getdirPIN(), REV);
+			
+			temp = changePWM(motor[FRONT_MOTOR].PI_VALUE, speed, motor[FRONT_MOTOR].getpwmPIN());
+			temp = changePWM(motor[REAR_MOTOR].PI_VALUE, speed, motor[REAR_MOTOR].getpwmPIN());			
+			temp = changePWM(motor[LEFT_MOTOR].PI_VALUE, speed, motor[LEFT_MOTOR].getpwmPIN());
+			temp = changePWM(motor[RIGHT_MOTOR].PI_VALUE, speed, motor[RIGHT_MOTOR].getpwmPIN());	
+		}
+		else if (choice == STOP) printf("Robot Stopped");
+		
+	}

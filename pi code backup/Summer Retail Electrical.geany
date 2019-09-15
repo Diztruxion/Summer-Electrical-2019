@@ -1,0 +1,67 @@
+[editor]
+line_wrapping=false
+line_break_column=72
+auto_continue_multiline=true
+
+[file_prefs]
+final_new_line=true
+ensure_convert_new_lines=false
+strip_trailing_spaces=false
+replace_tabs=false
+
+[indentation]
+indent_width=4
+indent_type=1
+indent_hard_tab_width=8
+detect_indent=true
+detect_indent_width=true
+indent_mode=2
+
+[project]
+name=Summer Retail Electrical
+base_path=/home/pi/projects/Summer Retail Electrical/
+description=
+file_patterns=
+
+[long line marker]
+long_line_behaviour=1
+long_line_column=72
+
+[files]
+current_page=0
+FILE_NAME_0=3688;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2Fmain.cpp;0;4
+FILE_NAME_1=4984;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2Frobot.cpp;0;4
+FILE_NAME_2=645;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2Frobot.hpp;0;4
+FILE_NAME_3=1;None;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2Fmovetest.txt;0;4
+FILE_NAME_4=0;None;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2Fwaypointlist.txt;0;4
+FILE_NAME_5=847;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2FmotorControl.cpp;0;4
+FILE_NAME_6=1490;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2FmotorControl.h;0;4
+FILE_NAME_7=1978;C;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2FpwmControl.c;0;4
+FILE_NAME_8=576;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2FpwmControl.h;0;4
+FILE_NAME_9=223;C++;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2Fwaypoint.hpp;0;4
+FILE_NAME_10=912;None;0;EUTF-8;1;1;0;%2Fhome%2Fpi%2Fprojects%2FSummer%20Retail%20Electrical%2FMotor%20Directions.txt;0;4
+FILE_NAME_11=1357;PHP;0;EUTF-8;1;1;0;%2Fvar%2Fwww%2Fhtml%2Findex.php;0;4
+
+[VTE]
+last_dir=/home/pi
+
+[build-menu]
+CFT_00_LB=_Compile
+CFT_00_CM=g++ -Wall -pthread -o main main.c init.c pwmControl.c piCleanup.c speedControl.cpp motorControl.cpp -lpigpiod_if2 -lrt -lwiringPi
+CFT_00_WD=
+filetypes=C;C++;
+CFT_01_LB=_Build
+CFT_01_CM=gcc -Wall -o "%e" "%f"
+CFT_01_WD=
+CFT_02_LB=_Lint
+CFT_02_CM=cppcheck --language=c --enable=warning,style --template=gcc "%f"
+CFT_02_WD=
+C++FT_00_LB=_Compile
+C++FT_00_CM=g++ -Wall -pthread -o main main.cpp init.c pwmControl.c piCleanup.c motorControl.cpp robot.cpp  -lpigpiod_if2 -lrt -lwiringPi -lcurl -lpthread
+C++FT_00_WD=
+C++FT_01_LB=_Build
+C++FT_01_CM=g++ -Wall -o "%e" "%f"
+C++FT_01_WD=
+EX_00_LB=_Execute
+EX_00_CM=sudo "./%e"
+EX_00_WD=
